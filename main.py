@@ -1,6 +1,9 @@
-tasks = {}
+today = []
+tomorrow = []
+other = []
 
-for _ in range(3):
+while True:
+    # Запрашиваем дату
     date = input("Введите дату: ")
 
     # Проверка на команду exit
@@ -8,6 +11,24 @@ for _ in range(3):
         print("Спасибо за использование! До свидания!")
         break
 
+    # Проверка на команду "Сохранить задачи"
+    if date.lower() == "сохранить задачи":
+        # Выводим все списки с задачами
+        print("\nЗадачи на сегодня:")
+        for task in today:
+            print(task)
+
+        print("\nЗадачи на завтра:")
+        for task in tomorrow:
+            print(task)
+
+        print("\nДругие задачи:")
+        for task in other:
+            print(task)
+
+        break
+
+    # Запрашиваем задачу
     task = input("Введите задачу: ")
 
     # Проверка на команду exit для задачи
@@ -15,10 +36,29 @@ for _ in range(3):
         print("Спасибо за использование! До свидания!")
         break
 
-    tasks[date] = task
+    # Проверка на команду "Сохранить задачи"
+    if task.lower() == "сохранить задачи":
+        # Выводим все списки с задачами
+        print("\nЗадачи на сегодня:")
+        for task in today:
+            print(task)
 
-# Выводим введенные задачи, если не была введена команда exit
-if len(tasks) > 0:
-    print("\nВведенные задачи:")
-    for date, task in tasks.items():
-        print(f"{date}: {task}")
+        print("\nЗадачи на завтра:")
+        for task in tomorrow:
+            print(task)
+
+        print("\nДругие задачи:")
+        for task in other:
+            print(task)
+
+        break
+
+
+
+    # Добавляем задачу в соответствующий список
+    if date == "Сегодня":
+        today.append(task)
+    elif date == "Завтра":
+        tomorrow.append(task)
+    else:
+        other.append(task)
